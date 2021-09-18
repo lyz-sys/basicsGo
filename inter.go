@@ -2,20 +2,20 @@ package main
 
 import "fmt"
 
-type I interface {
+type Interf interface {
 	M()
 }
 
-type T struct {
+type Ts struct {
 	S string
 }
 
-// M 此方法表示类型 T 实现了接口 I，但我们无需显式声明此事。
-func (t T) M() {
+// M 此方法表示类型 Ts 实现了接口 Interf，但我们无需显式声明此事。
+func (t Ts) M() {
 	fmt.Println(t.S)
 }
 
 func main() {
-	var i I = T{"hello"}
+	var i Interf = Ts{"hello"}
 	i.M()
 }

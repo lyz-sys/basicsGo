@@ -5,17 +5,20 @@ import (
 	"time"
 )
 
+type intnum uint64
+
 func main() {
 	fmt.Println(time.Now())
-	fmt.Println(t(50))
+	var n intnum = 50
+	fmt.Println(n.t())
 	fmt.Println(time.Now())
 }
 
-func t(n uint64) uint64 {
+func (n intnum) t() uint64 {
 	if n == 1 {
 		return 1
 	} else if n == 2 {
 		return 2
 	}
-	return t(n-1) + t(n-2)
+	return (n - 1).t() + (n - 2).t()
 }

@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"math"
-	"os"
+
+	"github.com/shopspring/decimal"
 )
 
 const (
@@ -71,15 +72,34 @@ func bubbleSort(arr []int) ([]int, error) {
 	return arr, nil
 }
 
-func main() {
-
-	s, sep := "", ""
-	for _, arg := range os.Args[1:] {
-		s += sep + arg
-		sep = " "
+func travelFee(oncePay float64, day int) float64 {
+	var total float64
+	day *= 2
+	decimal.DivisionPrecision = 2
+	for i := 0; i < day; i++ {
+		if total < 100 {
+			total += oncePay
+		} else if total < 150 {
+			total, _ = decimal.NewFromFloat(total).Add(decimal.NewFromFloat(oncePay * 0.8)).Float64()
+		} else {
+			total, _ = decimal.NewFromFloat(total).Add(decimal.NewFromFloat(oncePay * 0.5)).Float64()
+		}
 	}
-	fmt.Println(s)
-	fmt.Println("-------------------------------------")
+
+	return total
+}
+
+func main() {
+	//monthtravelFee := travelFee(7.00, 22)
+	//fmt.Println(monthtravelFee)
+
+	//s, sep := "", ""
+	//for _, arg := range os.Args[1:] {
+	//	s += sep + arg
+	//	sep = " "
+	//}
+	//fmt.Println(s)
+	//fmt.Println("-------------------------------------")
 	//var name string = "name"
 	//name = "123123aaa"
 	//var intc int = 123
@@ -112,30 +132,30 @@ func main() {
 	//	fmt.Println("sqrt", int(math.Sqrt(float64(i))))
 	//}
 	//
-	a, b, _ := formal(100, 200)
-	fmt.Println(a, b)
+	//a, b, _ := formal(100, 200)
+	//fmt.Println(a, b)
 	//
 	//p := int2b(14)
 	//fmt.Println(p)
 	//fmt.Printf("%T,常量c=%s\n",c,c)
 	//fmt.Printf("%T,常量e=%d\n",e,e)
 	//fmt.Printf("%T,常量f=%d\n",f,f)
-	if a > 10 {
-		fmt.Printf("%v", a)
-	}
-
+	//if a > 10 {
+	//	fmt.Printf("%v", a)
+	//}
+	//
 	//switch 默认true
-	switch {
-	case a < 10, a > 1000:
-		fmt.Printf("%v", a-1)
-		break
-	case a == 10, a == 100:
-		fmt.Printf("%v", a)
-		fallthrough //继续执行下个
-	case a > 10 && 1000 > a:
-		fmt.Printf("%v", a+1)
-		break
-	}
+	//switch {
+	//case a < 10, a > 1000:
+	//	fmt.Printf("%v", a-1)
+	//	break
+	//case a == 10, a == 100:
+	//	fmt.Printf("%v", a)
+	//	fallthrough //继续执行下个
+	//case a > 10 && 1000 > a:
+	//	fmt.Printf("%v", a+1)
+	//	break
+	//}
 
 	//var g int
 	//var f float64

@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 )
 
-var file = "./test.json"
+var file = "./testeee.json"
 
 type user struct {
 	Name   string `json:"name"`

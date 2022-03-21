@@ -35,7 +35,7 @@ func main() {
 	}
 	createQuery(e)
 
-	createQuery(90)
+	//createQuery(90)
 }
 
 func createQuery(q interface{}) {

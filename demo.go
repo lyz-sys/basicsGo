@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"math"
 
@@ -44,9 +45,7 @@ func formal(nums int, len int) (int, int, error) {
 	var i int
 out:
 	for ; i < len; i++ {
-		//i++
-		nums += 10
-		if len == 10 {
+		if nums += 10; len == 10 {
 			continue out
 		}
 	}
@@ -62,6 +61,9 @@ func int2b(num int) int {
 }
 
 func bubbleSort(arr []int) ([]int, error) {
+	if arr == nil {
+		return nil, errors.New("slice is nil")
+	}
 	for i := 0; i < len(arr); i++ {
 		for j := i + 1; j < len(arr)-i; j++ {
 			if arr[j] > arr[j+1] {

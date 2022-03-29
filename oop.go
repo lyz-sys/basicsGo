@@ -37,7 +37,9 @@ func (dog *Dog) speak() {
 func TestClient() {
 	dog := new(Dog)
 	dog.speakTo()
+	dog.speak()
 }
+
 func main() {
 	TestClient()
 }

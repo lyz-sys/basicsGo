@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"math"
 
+	_ "test-demo/config"
+
 	"github.com/shopspring/decimal"
 )
 

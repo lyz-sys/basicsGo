@@ -4,7 +4,8 @@ import (
 	"context"
 	"fmt"
 	"log"
-	main2 "test-demo/go-example"
+
+	mconfig "test-demo/config"
 
 	"github.com/Shopify/sarama"
 )
@@ -32,7 +33,7 @@ func SaramaConsumerGroup() {
 	config.Version = sarama.MaxVersion                    // specify appropriate version
 	config.Consumer.Offsets.Initial = sarama.OffsetOldest // 未找到组消费位移的时候从哪边开始消费
 
-	group, err := sarama.NewConsumerGroup(main2.BrokerList, "my-group1", config)
+	group, err := sarama.NewConsumerGroup(mconfig.KafkaBrokerList, "my-group1", config)
 	if err != nil {
 		panic(err)
 	}

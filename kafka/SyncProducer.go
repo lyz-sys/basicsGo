@@ -2,7 +2,8 @@ package main
 
 import (
 	"log"
-	main2 "test-demo/go-example"
+
+	mconfig "test-demo/config"
 
 	"github.com/Shopify/sarama"
 )
@@ -12,7 +13,7 @@ func SaramaProducer() {
 	config.Producer.Return.Successes = true
 	config.Producer.Return.Errors = true
 
-	producer, err := sarama.NewSyncProducer(main2.BrokerList, config)
+	producer, err := sarama.NewSyncProducer(mconfig.KafkaBrokerList, config)
 	if err != nil {
 		log.Fatalln(err)
 	}

@@ -3,20 +3,25 @@ package main
 import (
 	"context"
 	"fmt"
-	"test-demo/microservices/message"
+	"test-demo/microservices/s_demo/message"
 	"time"
+
+	"google.golang.org/grpc/credentials/insecure"
 
 	"google.golang.org/grpc"
 )
 
 func main() {
-
-	//1、Dail连接
-	conn, err := grpc.Dial("localhost:8090", grpc.WithInsecure())
+	conn, err := grpc.Dial("localhost:8090", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		panic(err.Error())
 	}
-	defer conn.Close()
+	defer func(conn *grpc.ClientConn) {
+		err := conn.Close()
+		if err != nil {
+			fmt.Println("Close:", err)
+		}
+	}(conn)
 
 	orderServiceClient := message.NewOrderServiceClient(conn)
 

@@ -6,7 +6,8 @@ import (
 	"os/signal"
 	"strconv"
 	"sync"
-	main2 "test-demo/go-example"
+
+	mconfig "test-demo/config"
 
 	"github.com/Shopify/sarama"
 )
@@ -19,7 +20,7 @@ func AsyncProducer() {
 	config.Net.MaxOpenRequests = 1
 	config.Producer.Idempotent = true
 
-	producer, err := sarama.NewAsyncProducer(main2.BrokerList, config)
+	producer, err := sarama.NewAsyncProducer(mconfig.KafkaBrokerList, config)
 	if err != nil {
 		panic(err)
 	}
@@ -75,7 +76,7 @@ ProducerLoop:
 }
 
 func AsyncProducerSelect() {
-	producer, err := sarama.NewAsyncProducer(main2.BrokerList, nil)
+	producer, err := sarama.NewAsyncProducer(mconfig.KafkaBrokerList, nil)
 	if err != nil {
 		panic(err)
 	}

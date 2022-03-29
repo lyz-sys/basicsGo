@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"net"
-	"test-demo/microservices/message"
+	"test-demo/microservices/s_demo/message"
 	"time"
 
 	"google.golang.org/grpc"

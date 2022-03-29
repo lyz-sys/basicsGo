@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func gen[K comparable, V bool | int](P1 K) V {
 	var res V
 	//switch res := P1.(type) {
@@ -10,10 +8,10 @@ func gen[K comparable, V bool | int](P1 K) V {
 	//default:
 	//	fmt.Println(456, res)
 	//}
-	res = true
+	//res = true
 	return res
 }
 
 func main() {
-	fmt.Println(gen(1))
+	//fmt.Println(gen(1))
 }

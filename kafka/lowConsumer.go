@@ -4,13 +4,14 @@ import (
 	"log"
 	"os"
 	"os/signal"
-	main2 "test-demo/go-example"
+
+	mconfig "test-demo/config"
 
 	"github.com/Shopify/sarama"
 )
 
 func SaramaConsumer() {
-	consumer, err := sarama.NewConsumer(main2.BrokerList, sarama.NewConfig())
+	consumer, err := sarama.NewConsumer(mconfig.KafkaBrokerList, sarama.NewConfig())
 	if err != nil {
 		panic(err)
 	}

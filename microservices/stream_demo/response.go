@@ -7,7 +7,6 @@ import (
 	"io"
 	"net"
 	"strconv"
-	"sync"
 	"test-demo/config"
 	"test-demo/microservices/stream_demo/message"
 
@@ -16,7 +15,6 @@ import (
 
 type OrderStruct struct {
 	orderMap map[string]message.OrderInfo
-	mux      sync.Mutex
 }
 
 //订单服务实现
@@ -46,9 +44,11 @@ func (os *OrderServiceImpl1) GetOrderInfo(stream message.OrderService_GetOrderIn
 		fmt.Println("请求：", orderRequest.GetOrderId())
 		fmt.Println("请求：", orderRequest)
 
-		OrderData.mux.Lock()
-		result := OrderData.orderMap[orderRequest.GetOrderId()]
-		OrderData.mux.Unlock()
+		result, ok := OrderData.orderMap[orderRequest.GetOrderId()]
+		if !ok {
+			fmt.Println("请求Id不存在")
+			return nil
+		}
 		//发送数据
 		err = stream.Send(&result)
 		if err == io.EOF {

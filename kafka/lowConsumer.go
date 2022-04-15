@@ -5,7 +5,7 @@ import (
 	"os"
 	"os/signal"
 
-	mconfig "test-demo/config"
+	mconfig "demo/config"
 
 	"github.com/Shopify/sarama"
 )

@@ -2,10 +2,10 @@ package main
 
 import (
 	"context"
+	"demo/microservices/s_demo/message"
 	"errors"
 	"fmt"
 	"net"
-	"test-demo/microservices/s_demo/message"
 	"time"
 
 	"google.golang.org/grpc"

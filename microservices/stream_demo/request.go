@@ -2,11 +2,11 @@ package main
 
 import (
 	"context"
+	"demo/config"
+	"demo/microservices/stream_demo/message"
 	"fmt"
 	"io"
 	"strconv"
-	"test-demo/config"
-	"test-demo/microservices/stream_demo/message"
 	"time"
 
 	"google.golang.org/grpc/credentials/insecure"

@@ -3,13 +3,13 @@ package main
 import (
 	"context"
 	_ "context"
+	"demo/config"
+	"demo/microservices/stream_demo/message"
 	_ "errors"
 	"fmt"
 	"io"
 	"net"
 	"strconv"
-	"test-demo/config"
-	"test-demo/microservices/stream_demo/message"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"

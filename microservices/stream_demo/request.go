@@ -2,11 +2,11 @@ package main
 
 import (
 	"context"
+	"demo/config"
+	"demo/microservices/stream_demo/message"
 	"fmt"
 	"io"
 	"strconv"
-	"test-demo/config"
-	"test-demo/microservices/stream_demo/message"
 	"time"
 
 	"google.golang.org/grpc/credentials/insecure"
@@ -14,8 +14,37 @@ import (
 	"google.golang.org/grpc"
 )
 
+//token认证
+type TokenAuthentication struct {
+	AppKey    string
+	AppSecret string
+}
+
+//组织token信息
+func (ta *TokenAuthentication) GetRequestMetadata(ctx context.Context, uri ...string) (map[string]string, error) {
+	return map[string]string{
+		"appid":  ta.AppKey,
+		"appkey": ta.AppSecret,
+	}, nil
+}
+
+//是否基于TLS认证进行安全传输
+func (ta *TokenAuthentication) RequireTransportSecurity() bool {
+	return false
+}
+
 func main() {
-	conn, err := grpc.Dial("127.0.0.1:"+strconv.Itoa(config.Port), grpc.WithTransportCredentials(insecure.NewCredentials()))
+	auth := TokenAuthentication{
+		AppKey:    "admin1",
+		AppSecret: "123456",
+	}
+	//creds, err := credentials.NewClientTLSFromFile("/Users/lyz/go/src/demo/microservices/stream_demo/cert/server.pem", "")
+	//if err != nil {
+	//	panic(err)
+	//}
+	//, grpc.WithTransportCredentials(creds)
+	conn, err := grpc.Dial("localhost:"+strconv.Itoa(config.Port), grpc.WithTransportCredentials(insecure.NewCredentials()), grpc.WithPerRPCCredentials(&auth))
+
 	if err != nil {
 		panic(err.Error())
 	}

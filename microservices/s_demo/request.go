@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
+	"demo/microservices/s_demo/message"
 	"fmt"
-	"test-demo/microservices/s_demo/message"
 	"time"
 
 	"google.golang.org/grpc/credentials/insecure"

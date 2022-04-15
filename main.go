@@ -1,11 +1,10 @@
 package main
 
 import (
+	_ "demo/config"
 	"errors"
 	"fmt"
 	"math"
-
-	_ "test-demo/config"
 
 	"github.com/shopspring/decimal"
 )
@@ -148,26 +147,9 @@ func main() {
 	//	fmt.Printf("%v", a)
 	//}
 	//
-	//switch 默认true
-	//switch {
-	//case a < 10, a > 1000:
-	//	fmt.Printf("%v", a-1)
-	//	break
-	//case a == 10, a == 100:
-	//	fmt.Printf("%v", a)
-	//	fallthrough //继续执行下个
-	//case a > 10 && 1000 > a:
-	//	fmt.Printf("%v", a+1)
-	//	break
-	//}
 
-	//var g int
 	//var f float64
 	//fmt.Println("请输入一个整数")
-	//fmt.Scanln(&g)
-	//fmt.Println(g)
-	//fmt.Scanf("%d,%f\n",&g,&f)
-	//fmt.Println(g,f)
 	//通过io判断键盘输入
 	//fmt.Println("请输入一个字符串：")
 	//reader := bufio.NewReader(os.Stdin)

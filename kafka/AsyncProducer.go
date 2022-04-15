@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"sync"
 
-	mconfig "test-demo/config"
+	mconfig "demo/config"
 
 	"github.com/Shopify/sarama"
 )

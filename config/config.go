@@ -11,6 +11,7 @@ import (
 var (
 	a               *ini.File
 	Port            int
+	AppKey          string
 	KafkaBrokerList []string
 	err             error
 )
@@ -20,10 +21,19 @@ func init() {
 	if err != nil {
 		log.Fatalf("Fail to parse 'config/app.ini': %v", err)
 	}
-	kafka := a.Section("KAFKA").Key("BROKER_LIST").MustString("")
-	Port, err = a.Section("APP").Key("APP_PORT").Int()
-	if err != nil {
-		log.Fatalf("Fail to parse 'config/app.ini': %v", err)
-	}
+	appInit()
+	kafkaInit()
+}
+
+func appInit() {
+	app := a.Section("APP")
+	AppKey = app.Key("APP_KEY").MustString("")
+	Port = app.Key("APP_PORT").MustInt(80)
+}
+
+func kafkaInit() {
+	conf := a.Section("KAFKA")
+	kafka := conf.Key("BROKER_LIST").MustString("")
+
 	KafkaBrokerList = strings.Split(kafka, ",")
 }

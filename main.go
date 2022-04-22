@@ -40,17 +40,6 @@ func sushu(start int, end int) {
 	}
 }
 
-func formal(nums int, len int) (int, int, error) {
-	var i int
-out:
-	for ; i < len; i++ {
-		if nums += 10; len == 10 {
-			continue out
-		}
-	}
-	return nums, i, nil
-}
-
 func int2b(num int) int {
 	if num > 0 {
 		var a int = num % 2

@@ -7,6 +7,7 @@ func main() {
 	fmt.Println("请输入一个整数")
 	_, err := fmt.Scanln(&a)
 	if err != nil {
+		fmt.Println("无效的选项")
 		return
 	}
 	//switch 默认true

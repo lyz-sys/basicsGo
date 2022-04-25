@@ -3,15 +3,7 @@ package main
 import (
 	_ "demo/config"
 	"fmt"
-	"github.com/shopspring/decimal"
 	"math"
-)
-
-const (
-	c string = "常量字符"
-	d
-	e = iota
-	f
 )
 
 func shuiXianHua(start int, end int) {
@@ -48,47 +40,20 @@ func int2b(num int) int {
 	return 0
 }
 
-func travelFee(oncePay float64, day int) float64 {
-	var total float64
-	day *= 2
-	decimal.DivisionPrecision = 2
-	for i := 0; i < day; i++ {
-		if total < 100 {
-			total += oncePay
-		} else if total < 150 {
-			total, _ = decimal.NewFromFloat(total).Add(decimal.NewFromFloat(oncePay * 0.8)).Float64()
-		} else {
-			total, _ = decimal.NewFromFloat(total).Add(decimal.NewFromFloat(oncePay * 0.5)).Float64()
-		}
-	}
-
-	return total
-}
-
 func main() {
-	//monthtravelFee := travelFee(7.00, 22)
-	//fmt.Println(monthtravelFee)
-
-	//s, sep := "", ""
+	//var s string
 	//for _, arg := range os.Args[1:] {
-	//	s += sep + arg
-	//	sep = " "
+	//	if s == "" {
+	//		s = arg
+	//		continue
+	//	}
+	//	s += " " + arg
 	//}
 	//fmt.Println(s)
-	//fmt.Println("-------------------------------------")
-	//var name string = "name"
-	//name = "123123aaa"
-	//var intc int = 123
-	//fmt.Println(intc)
-	//fmt.Println(c)
-	//fmt.Println(name)
 
 	//for i := 0; i < 100; i++ {
-	//	fmt.Println("sqrt", int(math.Sqrt(float64(i))))
+	//	fmt.Println("sqrt", math.Sqrt(float64(i)))
 	//}
-	//
-	//a, b, _ := formal(100, 200)
-	//fmt.Println(a, b)
 
 	//var f float64
 	//fmt.Println("请输入一个整数")

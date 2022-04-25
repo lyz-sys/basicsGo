@@ -2,22 +2,31 @@ package main
 
 import (
 	_ "demo/config"
-	"fmt"
 	"math"
+	"strconv"
 )
 
-func shuiXianHua(start int, end int) {
+// shuiXianHua 水仙数
+func shuiXianHua(start int, end int) (res []int) {
+	if start <= end {
+		return
+	}
 	for i := start; i < end; i++ {
 		x := i / 100
 		y := i / 10 % 10
 		z := i & 10
 		if math.Pow(float64(x), 3)+math.Pow(float64(y), 3)+math.Pow(float64(z), 3) == float64(i) {
-			fmt.Println(i)
+			res = append(res, i)
 		}
 	}
+	return
 }
 
-func sushu(start int, end int) {
+// sushu 素数
+func sushu(start int, end int) (res []int) {
+	if start <= end {
+		return
+	}
 	for i := start; i < end; i++ {
 		flag := true
 		for j := 2; j < int(math.Sqrt(float64(i))); j++ {
@@ -27,17 +36,19 @@ func sushu(start int, end int) {
 			}
 		}
 		if flag {
-			fmt.Println(i)
+			res = append(res, i)
 		}
 	}
+	return
 }
 
-func int2b(num int) int {
+// int2b int转2进制
+func int2b(num int) string {
 	if num > 0 {
-		var a int = num % 2
-		return int2b(num/2) + a
+		a := num % 2
+		return int2b(num/2) + strconv.Itoa(a)
 	}
-	return 0
+	return ""
 }
 
 func main() {

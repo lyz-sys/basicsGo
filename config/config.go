@@ -14,6 +14,7 @@ var (
 	AppKey          string
 	KafkaBrokerList []string
 	err             error
+	LogFile         string
 )
 
 func init() {
@@ -29,6 +30,7 @@ func appInit() {
 	app := a.Section("APP")
 	AppKey = app.Key("APP_KEY").MustString("")
 	Port = app.Key("APP_PORT").MustInt(80)
+	LogFile = app.Key("LOG_FILE").MustString("")
 }
 
 func kafkaInit() {

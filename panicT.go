@@ -1,23 +1,25 @@
 package main
 
 import (
+	"demo/logger"
 	"errors"
 	"fmt"
 )
 
-func funcA() (err error) {
-	defer func() {
-		if p := recover(); p != nil {
-			fmt.Println("panic recover! p:", p)
-			str, ok := p.(string)
-			if ok {
-				err = errors.New(str)
-			} else {
-				err = errors.New("panic")
-			}
-			//debug.PrintStack()
+// RecoverPanic is a func to recover panic
+func RecoverPanic() {
+	if p := recover(); p != nil {
+		fmt.Println("panic recover! p:", p)
+		str, ok := p.(string)
+		if ok {
+			logger.Logger.Print(str)
 		}
-	}()
+		//debug.PrintStack()
+	}
+}
+
+func funcA() (err error) {
+	defer RecoverPanic()
 	return funcB()
 }
 

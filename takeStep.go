@@ -2,30 +2,29 @@ package main
 
 import (
 	"fmt"
-	"time"
 )
 
-type intnum uint64
-
-func (n intnum) t() intnum {
+// CountHowManyWays
+// There are n steps
+// you can take one or two steps at a time
+// how many ways to finish them
+func CountHowManyWays(n uint64) uint64 {
 	if n == 1 {
 		return 1
 	} else if n == 2 {
 		return 2
 	}
-	return (n - 1).t() + (n - 2).t()
+	return CountHowManyWays(n-1) + CountHowManyWays(n-2)
 }
 
 func main() {
-	var choice intnum
-	fmt.Print("请输入台阶数量:")
+	var choice uint64
+	fmt.Print("Please enter the number of steps:")
 	_, err := fmt.Scanln(&choice)
 	if err != nil {
-		fmt.Println("无效的选项")
+		fmt.Println("Invalid option")
 		return
 	}
-	fmt.Printf("你选择了:%d\n", choice)
-	fmt.Println(time.Now())
-	fmt.Println(choice.t())
-	fmt.Println(time.Now())
+	fmt.Printf("You chose:%d\n", choice)
+	fmt.Println("The result is:", CountHowManyWays(choice))
 }

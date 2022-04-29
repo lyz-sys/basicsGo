@@ -6,22 +6,6 @@ import (
 	"strconv"
 )
 
-// shuiXianHua 水仙数
-func shuiXianHua(start int, end int) (res []int) {
-	if start <= end {
-		return
-	}
-	for i := start; i < end; i++ {
-		x := i / 100
-		y := i / 10 % 10
-		z := i & 10
-		if math.Pow(float64(x), 3)+math.Pow(float64(y), 3)+math.Pow(float64(z), 3) == float64(i) {
-			res = append(res, i)
-		}
-	}
-	return
-}
-
 // sushu 素数
 func sushu(start int, end int) (res []int) {
 	if start <= end {
